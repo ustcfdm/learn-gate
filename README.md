@@ -70,3 +70,21 @@ The command to translate viewer window is `pan` and `panTo`. For example
 
 In my test, if unit is not specified, the default unit seems to be *meter*. Correct me if this is wrong.
 
+# System
+
+System is a key-concept of GATE which provides a template of a predefined geometry to simulate a scanner. The document is [here](https://opengate.readthedocs.io/en/latest/defining_a_system_scanner_ct_pet_spect_optical.html#defining-a-system-label).
+
+In section [Step 1: Defining a scanner geometry](https://opengate.readthedocs.io/en/latest/getting_started.html#step-1-defining-a-scanner-geometry) of [Getting Started](https://opengate.readthedocs.io/en/latest/getting_started.html) part, it says that volumes should be attached to a sensitive detector in order to save the *hits*, and gives the following example:
+
+```
+# D E F I N E   A   S E N S I T I V E   D E T E C T O R
+/gate/box2/attachCrystalSD vglue 1cm
+```
+
+where the argument `vglue 1cm` is very confusing. I checked the email [archive](http://lists.opengatecollaboration.org/pipermail/gate-users/2012-July/005835.html), and found that `vglue 1cm` seems to be a typo. In other words, there should be no `vglue 1cm`, and the correct command should be 
+
+`
+/gate/box2/attachCrystalSD
+`
+
+The discussion in email [archive](http://lists.opengatecollaboration.org/pipermail/gate-users/2012-July/005835.html) is based on old version GATE v6.1, but I think it is applicable to current version (v9.2).
