@@ -70,6 +70,14 @@ The command to translate viewer window is `pan` and `panTo`. For example
 
 In my test, if unit is not specified, the default unit seems to be *meter*. Correct me if this is wrong.
 
+## Render style
+
+To render a volume (e.g. phantom) in solid style instead of wire frame style, the following command can be used:
+
+`
+/gate/my_phantom/vis/forceSolid
+`
+
 # System
 
 System is a key-concept of GATE which provides a template of a predefined geometry to simulate a scanner. The document is [here](https://opengate.readthedocs.io/en/latest/defining_a_system_scanner_ct_pet_spect_optical.html#defining-a-system-label).
@@ -81,10 +89,34 @@ In section [Step 1: Defining a scanner geometry](https://opengate.readthedocs.io
 /gate/box2/attachCrystalSD vglue 1cm
 ```
 
-where the argument `vglue 1cm` is very confusing. I checked the email [archive](http://lists.opengatecollaboration.org/pipermail/gate-users/2012-July/005835.html), and found that `vglue 1cm` seems to be a typo. In other words, there should be no `vglue 1cm`, and the correct command should be 
+where the argument `vglue 1cm` is very confusing. I checked the email [archive](http://lists.opengatecollaboration.org/pipermail/gate-users/2012-July/005835.html), and found that `vglue 1cm` seems to be a typo. In other words, there should be no `vglue 1cm`. The correct command should be 
 
 `
 /gate/box2/attachCrystalSD
 `
 
-The discussion in email [archive](http://lists.opengatecollaboration.org/pipermail/gate-users/2012-July/005835.html) is based on old version GATE v6.1, but I think it is applicable to current version (v9.2).
+The discussion in email [archive](http://lists.opengatecollaboration.org/pipermail/gate-users/2012-July/005835.html) is based on old version GATE v6.1, but I think it is still applicable to current version (v9.2).
+
+
+# Physics
+
+## Physics list
+
+GATE recommends "physics list builder" mechanism starting from Version 7.0. A short (and old) introduction is [here](http://geant4.in2p3.fr/IMG/pdf_PhysicsLists.pdf). For X-ray imaging application, I think the best option is `emstandard_opt3`? This is how to add the physics list in GATE:
+
+`
+/gate/physics/addPhysicsList emstandard_opt3
+`
+
+![Phycis list in Geant4](images/G4_physics_list.png "EM physics list in Geant4")
+
+## Cut
+
+The [document](https://opengate.readthedocs.io/en/latest/cut_and_variance_reduction_technics.html#production-threshold) says the list of production threshold can be displayed with the command:
+
+`
+/gate/physics/displayCuts
+`
+
+However, in my test, it does not display anything. Why? In addition, it says this command should be used after the initialization. Again, I found other examples use this command **before** initialization.
+
