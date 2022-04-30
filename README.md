@@ -108,7 +108,7 @@ GATE recommends "physics list builder" mechanism starting from Version 7.0. A sh
 /gate/physics/addPhysicsList emstandard_opt3
 `
 
-![Phycis list in Geant4](images/G4_physics_list.png "EM physics list in Geant4")
+![Phycis list in Geant4](./images/G4_physics_list.png "EM physics list in Geant4")
 
 ## Cut
 
@@ -120,3 +120,34 @@ The [document](https://opengate.readthedocs.io/en/latest/cut_and_variance_reduct
 
 However, in my test, it does not display anything. Why? In addition, it says this command should be used after the initialization. Again, I found other examples use this command **before** initialization.
 
+# Digitizer
+
+This part seems to be very complicated ...
+
+# Source
+
+There is a command `gps` in GATE, which is not described. According to [GEANT4 document](https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/generalParticleSource.html), `gps` should mean **General Particle Source**. In addition, some commands related to `gps` are deprecated, for example,
+
+`
+/gate/source/twogamma/gps/centre 0 0 0 cm
+`
+
+is shown to be deprecated, where `twogamma` is the source name defined by users. It seems that it should be replaced with
+
+`
+/gate/source/twogamma/gps/pos/centre 0 0 0 cm
+`
+
+which is shown (in Qt window) that it has the same effect as 
+
+`
+/gate/source/twogamma/gps/position 0 0 0 cm
+`
+
+(Pretty confusing!) So I recommend checking the message in Qt window, which can be opened with command
+
+`
+Gate --qt
+`
+
+# Data output
