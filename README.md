@@ -78,6 +78,18 @@ To render a volume (e.g. phantom) in solid style instead of wire frame style, th
 /gate/my_phantom/vis/forceSolid
 `
 
+## Tracking particles
+
+To display the particles' trajectory, the following commands can be used:
+```
+/vis/viewer/flush
+/tracking/storeTrajectory             1
+/vis/scene/add/trajectories
+/vis/scene/endOfEventAction           accumulate
+```
+To keep the visualization window after running the simulation, execute GATE with `--qt` option. In addition, you need to reduce the number of particles for visualization purpose.
+
+
 # System
 
 System is a key-concept of GATE which provides a template of a predefined geometry to simulate a scanner. The document is [here](https://opengate.readthedocs.io/en/latest/defining_a_system_scanner_ct_pet_spect_optical.html#defining-a-system-label).
